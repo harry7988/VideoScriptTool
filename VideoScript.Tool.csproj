@@ -1,0 +1,52 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <PackAsTool>true</PackAsTool>
+    <ToolCommandName>videoscript</ToolCommandName>
+    <PackageOutputPath>./nupkg</PackageOutputPath>
+    <Version>1.0.0</Version>
+    <PackageId>VideoScript</PackageId>
+    <Authors>VideoScript</Authors>
+    <Description>VideoScript - A powerful .NET tool for transcribing video and audio files to text using Apple Silicon GPU acceleration.
+
+Features:
+- Automatic video/audio detection and audio extraction via FFmpeg
+- GPU-accelerated transcription using MLX-Audio and Qwen3-ASR model
+- Support for multiple languages including Chinese and English
+- Automatic paragraph formatting based on sentence pauses
+- First-run automatic setup (FFmpeg, Python venv, model download)
+- ModelScope support for faster downloads in China
+
+Usage:
+  videoscript input.mp4                    # Transcribe video file
+  videoscript input.mp3 -o output.txt      # Specify output file
+  videoscript input.wav --language zh      # Specify language
+  videoscript --help                       # Show help
+  videoscript status                       # Check environment status
+  videoscript models                       # List available models
+
+Requirements:
+- macOS with Apple Silicon (M1/M2/M3/M4)
+- .NET 8.0 Runtime
+- Python 3.10+ (auto-configured)
+- Homebrew (for FFmpeg auto-installation)</Description>
+    <PackageTags>video audio transcription speech-recognition mlx apple-silicon asr whisper qwen chinese</PackageTags>
+    <PackageProjectUrl>https://github.com/videoscript/videoscript</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/videoscript/videoscript</RepositoryUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="System.CommandLine" Version="2.0.0-beta4.22272.1" />
+    <PackageReference Include="System.Text.Json" Version="8.0.5" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="python\**\*">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="README.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
+</Project>
